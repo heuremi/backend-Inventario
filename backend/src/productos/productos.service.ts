@@ -27,11 +27,41 @@ export class ProductosService {
   }
 
   async findOne(id: number) {
-    return await this.productoRepository.findOne({ where: { id } });
+    try {
+      const producto = await this.productoRepository.findOne({ where: { id } });
+      if (!producto) {
+        throw new Error(`Producto con ID ${id} no encontrado`);
+      }
+      return producto;
+    } catch (error) {
+      console.error(`Error buscando producto ${id}:`, error);
+      throw error;
+    }
   }
 
   async update(id: number, updateProductoDto: UpdateProductoDto) {
     return await this.productoRepository.update(id, updateProductoDto);
+  }
+
+  async updateStock(id: number, stock: number) {
+    try {
+      if (stock < 0) {
+        throw new Error('El stock no puede ser negativo');
+      }
+
+      const producto = await this.productoRepository.findOne({ where: { id } });
+      
+      if (!producto) {
+        throw new Error(`Producto con ID ${id} no encontrado`);
+      }
+
+      producto.cantidad = stock;     
+
+      return await this.productoRepository.save(producto);
+      
+    } catch (error) {
+      throw new Error('Error al actualizar el stock');
+    }
   }
 
   async remove(id: number) {
