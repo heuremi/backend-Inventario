@@ -33,8 +33,25 @@ export class ProductosController {
   }
 
   @Patch(':id/stock')
-  updateStock(@Param('id') id: string, @Body() updateStockDto: { stock: number }) {
-    return this.productoService.updateStock(+id, updateStockDto.stock);
+  async updateStock(@Param('id') id: string, @Body() updateStockDto: { stock: number }) {
+    try {
+      const resultado = await this.productoService.updateStock(+id, updateStockDto.stock);
+
+      return {
+        message: `Stock actualizado correctamente. Nueva cantidad: ${resultado.cantidad}`,
+        stockAnterior: resultado.cantidad + updateStockDto.stock,
+        stockActual: resultado.cantidad
+      };
+    } catch (error) {
+      if (error.name === 'stock_insuficiente') {
+        return {
+          error: 'No hay suficiente stock para completar la operación, contanctando a Logística.'
+        };
+      }
+      return {
+        message: 'Error al actualizar el stock',
+      };
+    }
   }
 
   @Delete(':id')

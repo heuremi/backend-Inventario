@@ -6,12 +6,20 @@ export class CreateProductoDto {
   nombre: string;
 
   @IsString()
+  @IsNotEmpty()
+  codigo: string;
+
+  @IsString()
   @IsOptional()
   descripcion?: string;
 
   @IsNumber()
   @Min(0)
-  precio: number;
+  precio_unitario: number;
+
+  @IsNumber()
+  @Min(0)
+  precio_venta: number;
 
   @IsNumber()
   @Min(0)

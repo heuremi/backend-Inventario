@@ -11,11 +11,17 @@ export class Producto {
   @Column({ type: 'text' })
   nombre: string;
 
+  @Column({ type: 'text', unique: true })
+  codigo: string;
+
   @Column({ type: 'text', nullable: true })
   descripcion: string;
 
   @Column({ type: 'numeric' })
-  precio: number;
+  precio_unitario: number;
+
+  @Column({ type: 'numeric' })
+  precio_venta: number;
 
   @Column({ type: 'numeric', default: 0 })
   cantidad: number;

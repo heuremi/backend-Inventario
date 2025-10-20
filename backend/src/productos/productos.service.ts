@@ -43,24 +43,41 @@ export class ProductosService {
     return await this.productoRepository.update(id, updateProductoDto);
   }
 
-  async updateStock(id: number, stock: number) {
+  async updateStock(id: number, cantidadADescontar: number) {
     try {
-      if (stock < 0) {
-        throw new Error('El stock no puede ser negativo');
+      if (cantidadADescontar < 0) {
+        throw new Error('La cantidad a descontar no puede ser negativa.');
       }
 
       const producto = await this.productoRepository.findOne({ where: { id } });
+      console.log(`Producto encontrado:`, producto);
       
       if (!producto) {
         throw new Error(`Producto con ID ${id} no encontrado`);
       }
 
-      producto.cantidad = stock;     
+      const nuevaCantidad = producto.cantidad - cantidadADescontar;
 
-      return await this.productoRepository.save(producto);
+      if (nuevaCantidad < 0) {
+        const error = new Error(`Stock insuficiente. Stock actual: ${producto.cantidad}, cantidad solicitada: ${cantidadADescontar}, faltante: ${Math.abs(nuevaCantidad)}`);
+        error.name = 'stock_insuficiente';
+        throw error;
+      }
+
+      producto.cantidad = nuevaCantidad;
+
+      if (producto.cantidad <= 0) {
+        producto.estado = false;
+      }
+
+      const productoActualizado = await this.productoRepository.save(producto);
+      return productoActualizado;
       
     } catch (error) {
-      throw new Error('Error al actualizar el stock');
+      console.error(`Tipo de error: ${error.name}`);
+      console.error(`Mensaje: ${error.message}`);
+      
+      throw error;
     }
   }
 
