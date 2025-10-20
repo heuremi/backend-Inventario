@@ -5,30 +5,35 @@ import { UpdateProductoDto } from './dto/update-producto.dto';
 
 @Controller('productos')
 export class ProductosController {
-  constructor(private readonly productosService: ProductosService) {}
+  constructor(private readonly productoService: ProductosService) {}
 
   @Post()
-  create(@Body() createProductoDto: CreateProductoDto) {
-    return this.productosService.create(createProductoDto);
+  async create(@Body() createProductoDto: CreateProductoDto) {
+    try {
+      const producto = await this.productoService.create(createProductoDto);
+      return producto;
+    } catch (error) {
+      return { error: 'Error al crear el producto' };
+    }
   }
 
   @Get()
   findAll() {
-    return this.productosService.findAll();
+    return this.productoService.findAll();
   }
 
   @Get(':id')
   findOne(@Param('id') id: string) {
-    return this.productosService.findOne(+id);
+    return this.productoService.findOne(+id);
   }
 
   @Patch(':id')
   update(@Param('id') id: string, @Body() updateProductoDto: UpdateProductoDto) {
-    return this.productosService.update(+id, updateProductoDto);
+    return this.productoService.update(+id, updateProductoDto);
   }
 
   @Delete(':id')
   remove(@Param('id') id: string) {
-    return this.productosService.remove(+id);
+    return this.productoService.remove(+id);
   }
 }
