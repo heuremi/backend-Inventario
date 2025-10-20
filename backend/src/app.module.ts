@@ -3,6 +3,12 @@ import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { ConfigModule } from '@nestjs/config';
 import { TypeOrmModule } from '@nestjs/typeorm';
+import { ProductosModule } from './productos/productos.module';
+import { EmpleadosModule } from './empleados/empleados.module';
+import { ClientesModule } from './clientes/clientes.module';
+import { ReservasInventarioModule } from './reservas_inventario/reservas_inventario.module';
+import { MovimientosInventarioModule } from './movimientos_inventario/movimientos_inventario.module';
+import { AjustesInventarioModule } from './ajustes_inventario/ajustes_inventario.module';
 
 @Module({
   imports: [ 
@@ -20,6 +26,13 @@ import { TypeOrmModule } from '@nestjs/typeorm';
       autoLoadEntities: true,
       synchronize: true, // cambiar cuando se pase a producción logging: true
     }),
+
+    ProductosModule,
+    EmpleadosModule,
+    ClientesModule,
+    ReservasInventarioModule,
+    MovimientosInventarioModule,
+    AjustesInventarioModule,
   ],
   controllers: [AppController],
   providers: [AppService],
