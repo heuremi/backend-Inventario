@@ -1,5 +1,5 @@
-import { Empleado } from "src/empleados/entities/empleado.entity";
-import { Producto } from "src/productos/entities/producto.entity";
+import { Empleado } from "../../empleados/entities/empleado.entity";
+import { Producto } from "../../productos/entities/producto.entity";
 import { Column, CreateDateColumn, Entity, ManyToOne, PrimaryGeneratedColumn } from "typeorm";
 
 @Entity('ajustes_inventario')

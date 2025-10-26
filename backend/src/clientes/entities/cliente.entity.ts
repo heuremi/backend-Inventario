@@ -1,12 +1,12 @@
-import { ReservaInventario } from "src/reservas_inventario/entities/reserva_inventario.entity";
+import { ReservaInventario } from "../../reservas_inventario/entities/reserva_inventario.entity";
 import { Column, CreateDateColumn, Entity, OneToMany, PrimaryGeneratedColumn, UpdateDateColumn } from "typeorm";
 
 @Entity('cliente', { schema: 'public' })
 export class Cliente {
-  @PrimaryGeneratedColumn()
+  @PrimaryGeneratedColumn({ name: 'id_cliente' })
   id: number;
 
-  @Column({ type: 'text' })
+  @Column({ type: 'text', nullable: true })
   nombre: string;
 
   @Column({ type: 'text' })

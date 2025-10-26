@@ -1,11 +1,11 @@
 import { Entity, PrimaryGeneratedColumn, Column, OneToMany, CreateDateColumn, UpdateDateColumn } from 'typeorm';
 import { MovimientoInventario } from '../../movimientos_inventario/entities/movimiento_inventario.entity';
-import { ReservaInventario } from 'src/reservas_inventario/entities/reserva_inventario.entity';
-import { AjusteInventario } from 'src/ajustes_inventario/entities/ajuste_inventario.entity';
+import { ReservaInventario } from '../../reservas_inventario/entities/reserva_inventario.entity';
+import { AjusteInventario } from '../../ajustes_inventario/entities/ajuste_inventario.entity';
 
 @Entity('producto', {schema: 'public'})
 export class Producto {
-  @PrimaryGeneratedColumn()
+  @PrimaryGeneratedColumn({ name: 'id_producto' })
   id: number;
 
   @Column({ type: 'text' })

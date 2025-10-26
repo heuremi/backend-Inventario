@@ -1,30 +1,41 @@
 import { DataSource, DataSourceOptions } from 'typeorm';
 import * as dotenv from 'dotenv';
+dotenv.config();
 import { Empleado } from './src/empleados/entities/empleado.entity'; 
 import { Cliente } from './src/clientes/entities/cliente.entity'; 
-import { AjusteInventario } from 'src/ajustes_inventario/entities/ajuste_inventario.entity';
-import { MovimientoInventario } from 'src/movimientos_inventario/entities/movimiento_inventario.entity';
-import { Producto } from 'src/productos/entities/producto.entity';
-import { ReservaInventario } from 'src/reservas_inventario/entities/reserva_inventario.entity';
+import { AjusteInventario } from './src/ajustes_inventario/entities/ajuste_inventario.entity';
+import { MovimientoInventario } from './src/movimientos_inventario/entities/movimiento_inventario.entity';
+import { Producto } from './src/productos/entities/producto.entity';
+import { ReservaInventario } from './src/reservas_inventario/entities/reserva_inventario.entity';
 
-dotenv.config(); 
+const useSSL = (process.env.POSTGRES_SSL === 'true') || (process.env.NODE_ENV === 'production');
 
 export const dataSourceOptions: DataSourceOptions = {
     type: 'postgres',
     host: process.env.POSTGRES_HOST,
-    port: process.env.POSTGRES_PORT,
+    port: parseInt(process.env.POSTGRES_PORT || '5432'),
     username: process.env.POSTGRES_USER,
     password: process.env.POSTGRES_PASSWORD,
     database: process.env.POSTGRES_DB,
     schema: 'Inventario',
-    
-    entities: [AjusteInventario, Cliente, Empleado, MovimientoInventario, Producto, ReservaInventario],
-    
-    migrations: ['dist/db/migrations/*.js'], 
 
-    ssl: {
-        rejectUnauthorized: false,
-    },
+    entities: [AjusteInventario, Cliente, Empleado, MovimientoInventario, Producto, ReservaInventario],
+
+    migrations: [
+        process.env.NODE_ENV === 'production'
+            ? 'dist/db/migrations/*.js'
+            : 'src/db/migrations/*.ts',
+    ],
+
+    ssl: useSSL ? { rejectUnauthorized: false } : false,
+    extra: useSSL
+        ? {
+            ssl: {
+                require: true,
+                rejectUnauthorized: false,
+            },
+        }
+        : undefined,
 };
 
 const dataSource = new DataSource(dataSourceOptions);

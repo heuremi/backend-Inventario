@@ -26,7 +26,7 @@ import { AjustesInventarioModule } from './ajustes_inventario/ajustes_inventario
       schema: 'Inventario',
       autoLoadEntities: true,
       ssl: { rejectUnauthorized: false },
-      synchronize: true,
+      synchronize: false,
     }),
 
     ProductosModule,

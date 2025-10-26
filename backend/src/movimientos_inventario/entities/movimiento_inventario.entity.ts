@@ -1,6 +1,6 @@
 import { Entity, PrimaryGeneratedColumn, Column, ManyToOne, JoinColumn, CreateDateColumn } from 'typeorm';
 import { Producto } from '../../productos/entities/producto.entity';
-import { Empleado } from 'src/empleados/entities/empleado.entity';
+import { Empleado } from '../../empleados/entities/empleado.entity';
 
 @Entity('movimientos_inventario')
 export class MovimientoInventario {
