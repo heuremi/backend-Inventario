@@ -1,7 +1,7 @@
 import { ReservaInventario } from "src/reservas_inventario/entities/reserva_inventario.entity";
 import { Column, CreateDateColumn, Entity, OneToMany, PrimaryGeneratedColumn, UpdateDateColumn } from "typeorm";
 
-@Entity('clientes')
+@Entity('cliente', { schema: 'public' })
 export class Cliente {
   @PrimaryGeneratedColumn()
   id: number;
@@ -27,9 +27,9 @@ export class Cliente {
   @OneToMany(() => ReservaInventario, (reserva) => reserva.cliente)
   reservas: ReservaInventario[];
 
-  @CreateDateColumn()
+  /* @CreateDateColumn()
   fechaCreacion: Date;
 
   @UpdateDateColumn()
-  fechaActualizacion: Date;
+  fechaActualizacion: Date; */
 }

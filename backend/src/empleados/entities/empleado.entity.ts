@@ -2,7 +2,7 @@ import { AjusteInventario } from "src/ajustes_inventario/entities/ajuste_inventa
 import { MovimientoInventario } from "src/movimientos_inventario/entities/movimiento_inventario.entity";
 import { Column, CreateDateColumn, Entity, OneToMany, PrimaryGeneratedColumn, UpdateDateColumn } from "typeorm";
 
-@Entity('empleados')
+@Entity('empleado', { schema: 'public' })
 export class Empleado {
   @PrimaryGeneratedColumn()
   id: number;
@@ -28,9 +28,9 @@ export class Empleado {
   @OneToMany(() => AjusteInventario, (ajuste) => ajuste.empleado)
   ajustes: AjusteInventario[];
 
-  @CreateDateColumn()
-  fechaCreacion: Date;
+  @CreateDateColumn({ name: 'fecha_ingreso', type: 'timestamp without time zone' }) 
+  fechaIngreso: Date;
 
-  @UpdateDateColumn()
-  fechaActualizacion: Date;
+  /* @UpdateDateColumn()
+  fechaActualizacion: Date; */
 }

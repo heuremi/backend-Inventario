@@ -23,8 +23,10 @@ import { AjustesInventarioModule } from './ajustes_inventario/ajustes_inventario
       username: process.env.POSTGRES_USER,
       password: process.env.POSTGRES_PASSWORD,
       database: process.env.POSTGRES_DB,
+      schema: 'Inventario',
       autoLoadEntities: true,
-      synchronize: true, // cambiar cuando se pase a producción logging: true
+      ssl: { rejectUnauthorized: false },
+      synchronize: true,
     }),
 
     ProductosModule,

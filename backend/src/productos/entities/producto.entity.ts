@@ -3,7 +3,7 @@ import { MovimientoInventario } from '../../movimientos_inventario/entities/movi
 import { ReservaInventario } from 'src/reservas_inventario/entities/reserva_inventario.entity';
 import { AjusteInventario } from 'src/ajustes_inventario/entities/ajuste_inventario.entity';
 
-@Entity('productos')
+@Entity('producto', {schema: 'public'})
 export class Producto {
   @PrimaryGeneratedColumn()
   id: number;
@@ -11,7 +11,7 @@ export class Producto {
   @Column({ type: 'text' })
   nombre: string;
 
-  @Column({ type: 'text', unique: true })
+  @Column({ type: 'text', unique: true, nullable: false })
   codigo: string;
 
   @Column({ type: 'text', nullable: true })
@@ -38,9 +38,9 @@ export class Producto {
   @OneToMany(() => AjusteInventario, (ajuste) => ajuste.producto)
   ajustes: AjusteInventario[];
 
-  @CreateDateColumn()
+  /* @CreateDateColumn()
   fechaCreacion: Date;
 
   @UpdateDateColumn()
-  fechaActualizacion: Date;
+  fechaActualizacion: Date; */
 }
