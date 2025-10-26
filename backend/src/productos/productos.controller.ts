@@ -45,7 +45,7 @@ export class ProductosController {
     } catch (error) {
       if (error.name === 'stock_insuficiente') {
         return {
-          error: 'No hay suficiente stock para completar la operación, contanctando a Logística.'
+          error: 'No hay suficiente stock para completar la operación, contanctando a Compras.'
         };
       }
       return {
