@@ -7,7 +7,10 @@ export class Empleado {
   @PrimaryGeneratedColumn({ name: 'id_empleado' })
   id: number;
 
-  @Column({ type: 'text', default:'' })
+  @Column({type: 'text', default: ''})
+  rut: string;
+
+  @Column({ type: 'text', default: ''})
   nombre: string;
 
   @Column({ type: 'text', default: ''})
@@ -28,7 +31,7 @@ export class Empleado {
   @OneToMany(() => AjusteInventario, (ajuste) => ajuste.empleado)
   ajustes: AjusteInventario[];
 
-  @Column({ name: 'fecha_ingreso', type: 'timestamp without time zone', default: () => 'CURRENT_DATE' }) 
+  @CreateDateColumn({ name: 'fecha_ingreso', type: 'timestamp without time zone' }) 
   fechaIngreso: Date;
 
   /* @UpdateDateColumn()
