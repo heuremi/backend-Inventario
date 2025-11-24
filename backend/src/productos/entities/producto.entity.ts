@@ -1,6 +1,6 @@
 import { Entity, PrimaryGeneratedColumn, Column, OneToMany, CreateDateColumn, UpdateDateColumn } from 'typeorm';
 import { MovimientoInventario } from '../../movimientos_inventario/entities/movimiento_inventario.entity';
-import { ReservaInventario } from '../../reservas_inventario/entities/reserva_inventario.entity';
+import { ReservasVentaInventario } from '../../reservas_venta_inventario/entities/reservas_venta_inventario.entity';
 import { AjusteInventario } from '../../ajustes_inventario/entities/ajuste_inventario.entity';
 
 @Entity('producto', {schema: 'public'})
@@ -32,15 +32,9 @@ export class Producto {
   @OneToMany(() => MovimientoInventario, (movimiento) => movimiento.producto)
   movimientos: MovimientoInventario[];
 
-  @OneToMany(() => ReservaInventario, (reserva) => reserva.producto)
-  reservas: ReservaInventario[];
+  @OneToMany(() => ReservasVentaInventario, (reserva) => reserva.producto)
+  reservas: ReservasVentaInventario[];
 
   @OneToMany(() => AjusteInventario, (ajuste) => ajuste.producto)
   ajustes: AjusteInventario[];
-
-  /* @CreateDateColumn()
-  fechaCreacion: Date;
-
-  @UpdateDateColumn()
-  fechaActualizacion: Date; */
 }
