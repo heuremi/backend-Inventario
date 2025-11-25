@@ -1,26 +1,19 @@
 import { Injectable } from '@nestjs/common';
-import { CreateProductosSinStockDto } from './dto/create-productos_sin_stock.dto';
-import { UpdateProductosSinStockDto } from './dto/update-productos_sin_stock.dto';
+import { InjectRepository } from '@nestjs/typeorm';
+import { ProductosSinStock } from './entities/productos_sin_stock.entity';
+import { Repository } from 'typeorm';
 
 @Injectable()
 export class ProductosSinStockService {
-  create(createProductosSinStockDto: CreateProductosSinStockDto) {
-    return 'This action adds a new productosSinStock';
+  constructor(
+    @InjectRepository(ProductosSinStock)
+    private readonly productoRepository: Repository<ProductosSinStock>
+  ) {}
+  async findAll() {
+    return await this.productoRepository.find();
   }
 
-  findAll() {
-    return `This action returns all productosSinStock`;
-  }
-
-  findOne(id: number) {
-    return `This action returns a #${id} productosSinStock`;
-  }
-
-  update(id: number, updateProductosSinStockDto: UpdateProductosSinStockDto) {
-    return `This action updates a #${id} productosSinStock`;
-  }
-
-  remove(id: number) {
-    return `This action removes a #${id} productosSinStock`;
+  async findOne(id: number) {
+    return await this.productoRepository.findOneBy({ id_producto: id });
   }
 }

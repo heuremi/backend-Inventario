@@ -8,7 +8,6 @@ import { EmpleadosModule } from './empleados/empleados.module';
 import { ClientesModule } from './clientes/clientes.module';
 import { MovimientosInventarioModule } from './movimientos_inventario/movimientos_inventario.module';
 import { AjustesInventarioModule } from './ajustes_inventario/ajustes_inventario.module';
-import { ReservasSinStockModule } from './reservas_sin_stock/reservas_sin_stock.module';
 import { ReservasVentaInventarioModule } from './reservas_venta_inventario/reservas_venta_inventario.module';
 import { ProductosSinStockModule } from './productos_sin_stock/productos_sin_stock.module';
 
@@ -37,7 +36,6 @@ import { ProductosSinStockModule } from './productos_sin_stock/productos_sin_sto
     ReservasVentaInventarioModule,
     MovimientosInventarioModule,
     AjustesInventarioModule,
-    ReservasSinStockModule,
     ReservasVentaInventarioModule,
     ProductosSinStockModule,
   ],
