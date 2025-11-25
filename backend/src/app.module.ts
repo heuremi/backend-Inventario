@@ -6,9 +6,11 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 import { ProductosModule } from './productos/productos.module';
 import { EmpleadosModule } from './empleados/empleados.module';
 import { ClientesModule } from './clientes/clientes.module';
-import { ReservasVentaInventarioModule } from './reservas_inventario/reservas_venta_inventario.module';
+import { ReservasVentaInventarioModule } from './reservas_venta_inventario/reservas_venta_inventario.module';
 import { MovimientosInventarioModule } from './movimientos_inventario/movimientos_inventario.module';
 import { AjustesInventarioModule } from './ajustes_inventario/ajustes_inventario.module';
+import { ReservasVentaInventarioModule } from './reservas_venta_inventario/reservas_venta_inventario.module';
+import { ProductosSinStockModule } from './productos_sin_stock/productos_sin_stock.module';
 
 @Module({
   imports: [ 
@@ -35,6 +37,8 @@ import { AjustesInventarioModule } from './ajustes_inventario/ajustes_inventario
     ReservasVentaInventarioModule,
     MovimientosInventarioModule,
     AjustesInventarioModule,
+    ReservasVentaInventarioModule,
+    ProductosSinStockModule,
   ],
   controllers: [AppController],
   providers: [AppService],

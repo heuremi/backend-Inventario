@@ -9,7 +9,7 @@ export class MovimientosInventarioController {
 
   @Post()
   create(@Body() createMovimientosInventarioDto: CreateMovimientosInventarioDto) {
-    return this.movimientosInventarioService.create(createMovimientosInventarioDto);
+    return this.create(createMovimientosInventarioDto);
   }
 
   @Get()
