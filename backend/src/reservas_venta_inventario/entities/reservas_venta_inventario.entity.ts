@@ -4,7 +4,7 @@ import { Entity, PrimaryGeneratedColumn, Column, ManyToOne, JoinColumn, CreateDa
 
 @Entity('reservas_venta_inventario', { schema: 'public' })
 export class ReservasVentaInventario {
-    @PrimaryGeneratedColumn()
+    @PrimaryGeneratedColumn({ name: 'id_reserva' })
     id: number;
 
     @Column({ type: 'int' })
@@ -18,6 +18,6 @@ export class ReservasVentaInventario {
     @JoinColumn({ name: 'id_cliente' })
     cliente: Cliente;
 
-    @CreateDateColumn()
+    @CreateDateColumn({ name: 'fechareserva' })
     fechaReserva: Date;
 }

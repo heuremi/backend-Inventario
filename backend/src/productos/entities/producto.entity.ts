@@ -5,7 +5,7 @@ import { AjusteInventario } from '../../ajustes_inventario/entities/ajuste_inven
 
 @Entity('producto', { schema: 'public' })
 export class Producto {
-  @PrimaryGeneratedColumn()
+  @PrimaryGeneratedColumn({ name: 'id_producto' })
   id: number;
 
   @Column({ type: 'text' })
@@ -23,7 +23,7 @@ export class Producto {
   @Column({ type: 'numeric' })
   precio_venta: number;
 
-  @Column({ type: 'numeric', default: 0 })
+  @Column({ name: 'cantidad', type: 'numeric', default: 0 })
   stock: number;
 
   @Column({ type: 'boolean', default: true })
