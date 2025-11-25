@@ -7,13 +7,16 @@ import { Repository } from 'typeorm';
 export class ProductosSinStockService {
   constructor(
     @InjectRepository(ProductosSinStock)
-    private readonly productoRepository: Repository<ProductosSinStock>
+    private readonly productoSinStockRepository: Repository<ProductosSinStock>
   ) {}
   async findAll() {
-    return await this.productoRepository.find();
+    return await this.productoSinStockRepository.find();
   }
 
   async findOne(id: number) {
-    return await this.productoRepository.findOneBy({ id_producto: id });
+    return await this.productoSinStockRepository.findOne({
+      where: { id_producto: id },
+      relations: ['producto'],
+    });
   }
 }

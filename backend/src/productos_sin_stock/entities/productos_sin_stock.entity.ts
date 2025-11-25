@@ -3,8 +3,9 @@ import { Producto } from '../../productos/entities/producto.entity';
 
 @Entity('productos_sin_stock', {schema: 'public'})
 export class ProductosSinStock {
-    
-    @PrimaryColumn({ name: 'id_producto' })
+	@PrimaryColumn({ name: 'id_producto', type: 'int' })
+	id_producto: number;
+
 	@OneToOne(() => Producto)
 	@JoinColumn({ name: 'id_producto' })
 	producto: Producto;

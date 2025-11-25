@@ -3,9 +3,9 @@ import { MovimientoInventario } from '../../movimientos_inventario/entities/movi
 import { ReservasVentaInventario } from '../../reservas_venta_inventario/entities/reservas_venta_inventario.entity';
 import { AjusteInventario } from '../../ajustes_inventario/entities/ajuste_inventario.entity';
 
-@Entity('producto', {schema: 'public'})
+@Entity('producto', { schema: 'public' })
 export class Producto {
-  @PrimaryGeneratedColumn({ name: 'id_producto' })
+  @PrimaryGeneratedColumn()
   id: number;
 
   @Column({ type: 'text' })
