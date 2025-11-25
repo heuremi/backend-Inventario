@@ -26,6 +26,7 @@ export class ReservasVentaInventarioService {
     if (!cliente) throw new NotFoundException('Cliente no encontrado');
 
     const reserva = this.reservaRepo.create({
+      fechaReserva: new Date(),
       stock: dto.stock,
       producto,
       cliente,
