@@ -38,9 +38,9 @@ export class ProductosController {
       const resultado = await this.productoService.updateStock(+id, updateStockDto.stock);
 
       return {
-        message: `Stock actualizado correctamente. Nueva cantidad: ${resultado.cantidad}`,
-        stockAnterior: resultado.cantidad + updateStockDto.stock,
-        stockActual: resultado.cantidad
+        message: `Stock actualizado correctamente. Nuevo stock: ${resultado.stock}`,
+        stockAnterior: resultado.stock + updateStockDto.stock,
+        stockActual: resultado.stock
       };
     } catch (error) {
       if (error.name === 'stock_insuficiente') {

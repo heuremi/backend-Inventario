@@ -43,10 +43,10 @@ export class ProductosService {
     return await this.productoRepository.update(id, updateProductoDto);
   }
 
-  async updateStock(id: number, cantidadADescontar: number) {
+  async updateStock(id: number, stock: number) {
     try {
-      if (cantidadADescontar < 0) {
-        throw new Error('La cantidad a descontar no puede ser negativa.');
+      if (stock < 0) {
+        throw new Error('El stock a descontar no puede ser negativa.');
       }
 
       const producto = await this.productoRepository.findOne({ where: { id } });
@@ -56,17 +56,17 @@ export class ProductosService {
         throw new Error(`Producto con ID ${id} no encontrado`);
       }
 
-      const nuevaCantidad = producto.cantidad - cantidadADescontar;
+      const nuevoStock = producto.stock - stock;
 
-      if (nuevaCantidad < 0) {
-        const error = new Error(`Stock insuficiente. Stock actual: ${producto.cantidad}, cantidad solicitada: ${cantidadADescontar}, faltante: ${Math.abs(nuevaCantidad)}`);
+      if (nuevoStock < 0) {
+        const error = new Error(`Stock insuficiente. Stock actual: ${producto.stock}, stock solicitado: ${stock}, faltante: ${Math.abs(nuevoStock)}`);
         error.name = 'stock_insuficiente';
         throw error;
       }
 
-      producto.cantidad = nuevaCantidad;
+      producto.stock = nuevoStock;
 
-      if (producto.cantidad <= 0) {
+      if (producto.stock <= 0) {
         producto.estado = false;
       }
 

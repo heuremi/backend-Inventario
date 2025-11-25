@@ -24,7 +24,7 @@ export class Producto {
   precio_venta: number;
 
   @Column({ type: 'numeric', default: 0 })
-  cantidad: number;
+  stock: number;
 
   @Column({ type: 'boolean', default: true })
   estado: boolean;

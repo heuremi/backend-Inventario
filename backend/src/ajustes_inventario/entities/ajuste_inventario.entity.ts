@@ -8,7 +8,7 @@ export class AjusteInventario {
   id: number;
 
   @Column({ type: 'numeric' })
-  cantidad: number;
+  stock: number;
 
   @Column({ type: 'text', nullable: true })
   observaciones: string;

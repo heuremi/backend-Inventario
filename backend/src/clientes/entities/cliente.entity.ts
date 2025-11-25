@@ -9,7 +9,7 @@ export class Cliente {
   @Column({ type: 'text', nullable: true })
   nombre: string;
 
-  @Column({ type: 'text' })
+  @Column({ type: 'text', nullable: true, default: '' })
   apellido: string;
 
   @Column({ type: 'text' })

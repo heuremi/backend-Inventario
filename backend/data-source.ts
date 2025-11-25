@@ -19,7 +19,6 @@ export const dataSourceOptions: DataSourceOptions = {
     password: process.env.POSTGRES_PASSWORD,
     database: process.env.POSTGRES_DB,
     schema: 'Inventario',
-
     entities: [AjusteInventario, Cliente, Empleado, MovimientoInventario, Producto, ReservasVentaInventario, ProductosSinStock],
 
     migrations: [

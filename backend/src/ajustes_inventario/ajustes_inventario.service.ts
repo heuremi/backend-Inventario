@@ -26,7 +26,7 @@ export class AjustesInventarioService {
     if (!producto) throw new NotFoundException('Producto no encontrado');
 
     const ajuste = this.ajusteRepo.create({
-      cantidad: dto.cantidad,
+      stock: dto.stock,
       observaciones: dto.observaciones,
       empleado,
       producto,
@@ -60,7 +60,7 @@ export class AjustesInventarioService {
     }
 
     Object.assign(ajuste, {
-      cantidad: dto.cantidad ?? ajuste.cantidad,
+      stock: dto.stock ?? ajuste.stock,
       observaciones: dto.observaciones ?? ajuste.observaciones,
     });
 
