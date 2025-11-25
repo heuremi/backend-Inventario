@@ -6,7 +6,7 @@ import { Cliente } from './src/clientes/entities/cliente.entity';
 import { AjusteInventario } from './src/ajustes_inventario/entities/ajuste_inventario.entity';
 import { MovimientoInventario } from './src/movimientos_inventario/entities/movimiento_inventario.entity';
 import { Producto } from './src/productos/entities/producto.entity';
-import { ReservaInventario } from './src/reservas_inventario/entities/reserva_inventario.entity';
+import { ReservasVentaInventario } from './src/reservas_inventario/entities/reservas_venta_inventario.entity';
 
 const useSSL = (process.env.POSTGRES_SSL === 'true') || (process.env.NODE_ENV === 'production');
 
@@ -19,7 +19,7 @@ export const dataSourceOptions: DataSourceOptions = {
     database: process.env.POSTGRES_DB,
     schema: 'Inventario',
 
-    entities: [AjusteInventario, Cliente, Empleado, MovimientoInventario, Producto, ReservaInventario],
+    entities: [AjusteInventario, Cliente, Empleado, MovimientoInventario, Producto, ReservasVentaInventario],
 
     migrations: [
         process.env.NODE_ENV === 'production'

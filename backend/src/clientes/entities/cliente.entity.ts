@@ -1,4 +1,4 @@
-import { ReservaInventario } from "../../reservas_inventario/entities/reserva_inventario.entity";
+import { ReservasVentaInventario } from "../../reservas_inventario/entities/reservas_venta_inventario.entity";
 import { Column, CreateDateColumn, Entity, OneToMany, PrimaryGeneratedColumn, UpdateDateColumn } from "typeorm";
 
 @Entity('cliente', { schema: 'public' })
@@ -9,7 +9,7 @@ export class Cliente {
   @Column({ type: 'text', nullable: true })
   nombre: string;
 
-  @Column({ type: 'text' })
+  @Column({ type: 'text', nullable: true, default: '' })
   apellido: string;
 
   @Column({ type: 'text' })
@@ -24,8 +24,8 @@ export class Cliente {
   @Column({ type: 'boolean', default: true })
   estado: boolean;
 
-  @OneToMany(() => ReservaInventario, (reserva) => reserva.cliente)
-  reservas: ReservaInventario[];
+  @OneToMany(() => ReservasVentaInventario, (reserva) => reserva.cliente)
+  reservas: ReservasVentaInventario[];
 
   /* @CreateDateColumn()
   fechaCreacion: Date;

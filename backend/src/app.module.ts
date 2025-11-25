@@ -6,7 +6,7 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 import { ProductosModule } from './productos/productos.module';
 import { EmpleadosModule } from './empleados/empleados.module';
 import { ClientesModule } from './clientes/clientes.module';
-import { ReservasInventarioModule } from './reservas_inventario/reservas_inventario.module';
+import { ReservasVentaInventarioModule } from './reservas_inventario/reservas_venta_inventario.module';
 import { MovimientosInventarioModule } from './movimientos_inventario/movimientos_inventario.module';
 import { AjustesInventarioModule } from './ajustes_inventario/ajustes_inventario.module';
 
@@ -32,7 +32,7 @@ import { AjustesInventarioModule } from './ajustes_inventario/ajustes_inventario
     ProductosModule,
     EmpleadosModule,
     ClientesModule,
-    ReservasInventarioModule,
+    ReservasVentaInventarioModule,
     MovimientosInventarioModule,
     AjustesInventarioModule,
   ],

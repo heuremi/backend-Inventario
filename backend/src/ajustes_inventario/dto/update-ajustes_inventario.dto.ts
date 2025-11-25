@@ -6,7 +6,7 @@ export class UpdateAjustesInventarioDto extends PartialType(CreateAjustesInventa
 	@IsOptional()
 	@IsNumber()
 	@Min(0.0000001)
-	cantidad?: number;
+	stock?: number;
 
 	@IsOptional()
 	@IsString()

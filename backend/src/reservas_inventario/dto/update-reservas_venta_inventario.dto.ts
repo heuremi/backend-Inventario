@@ -1,12 +1,12 @@
 import { PartialType } from '@nestjs/mapped-types';
-import { CreateReservasInventarioDto } from './create-reservas_inventario.dto';
+import { CreateReservasVentaInventarioDto } from './create-reservas_venta_inventario.dto';
 import { IsInt, IsNumber, IsOptional, Min } from 'class-validator';
 
-export class UpdateReservasInventarioDto extends PartialType(CreateReservasInventarioDto) {
+export class UpdateReservasVentaInventarioDto extends PartialType(CreateReservasVentaInventarioDto) {
 	@IsOptional()
 	@IsNumber()
 	@Min(0.0000001)
-	cantidad?: number;
+	stock?: number;
 
 	@IsOptional()
 	@IsInt()

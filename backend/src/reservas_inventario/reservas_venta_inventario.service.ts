@@ -1,24 +1,24 @@
 import { Injectable, NotFoundException } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
-import { CreateReservasInventarioDto } from './dto/create-reservas_inventario.dto';
-import { UpdateReservasInventarioDto } from './dto/update-reservas_inventario.dto';
-import { ReservaInventario } from './entities/reserva_inventario.entity';
+import { CreateReservasVentaInventarioDto } from './dto/create-reservas_venta_inventario.dto';
+import { UpdateReservasVentaInventarioDto } from './dto/update-reservas_venta_inventario.dto';
+import { ReservasVentaInventario } from './entities/reservas_venta_inventario.entity';
 import { Producto } from '../productos/entities/producto.entity';
 import { Cliente } from '../clientes/entities/cliente.entity';
 
 @Injectable()
-export class ReservasInventarioService {
+export class ReservasVentaInventarioService {
   constructor(
-    @InjectRepository(ReservaInventario)
-    private readonly reservaRepo: Repository<ReservaInventario>,
+    @InjectRepository(ReservasVentaInventario)
+    private readonly reservaRepo: Repository<ReservasVentaInventario>,
     @InjectRepository(Producto)
     private readonly productoRepo: Repository<Producto>,
     @InjectRepository(Cliente)
     private readonly clienteRepo: Repository<Cliente>,
   ) {}
 
-  async create(dto: CreateReservasInventarioDto) {
+  async create(dto: CreateReservasVentaInventarioDto) {
     const producto = await this.productoRepo.findOne({ where: { id: dto.productoId } });
     if (!producto) throw new NotFoundException('Producto no encontrado');
 
@@ -26,7 +26,7 @@ export class ReservasInventarioService {
     if (!cliente) throw new NotFoundException('Cliente no encontrado');
 
     const reserva = this.reservaRepo.create({
-      cantidad: dto.cantidad,
+      stock: dto.stock,
       producto,
       cliente,
     });
@@ -43,7 +43,7 @@ export class ReservasInventarioService {
     return reserva;
   }
 
-  async update(id: number, dto: UpdateReservasInventarioDto) {
+  async update(id: number, dto: UpdateReservasVentaInventarioDto) {
     const reserva = await this.reservaRepo.findOne({ where: { id } });
     if (!reserva) throw new NotFoundException('Reserva no encontrada');
 
@@ -59,7 +59,7 @@ export class ReservasInventarioService {
     }
 
     Object.assign(reserva, {
-      cantidad: dto.cantidad ?? reserva.cantidad,
+      stock: dto.stock ?? reserva.stock,
     });
 
     await this.reservaRepo.save(reserva);
