@@ -2,6 +2,7 @@ import { Controller, Get, Post, Body, Patch, Param, Delete } from '@nestjs/commo
 import { ProductosService } from './productos.service';
 import { CreateProductoDto } from './dto/create-producto.dto';
 import { UpdateProductoDto } from './dto/update-producto.dto';
+import { Empleado } from '../empleados/entities/empleado.entity';
 
 @Controller('productos')
 export class ProductosController {
@@ -9,6 +10,9 @@ export class ProductosController {
 
   @Post()
   async create(@Body() createProductoDto: CreateProductoDto) {
+    if (createProductoDto.user?.rol !== 'ADMIN_INVENTARIO' && createProductoDto.user?.rol !== 'JEFE_INVENTARIO') {
+      return { error: 'No tienes permisos para crear productos.' };
+    }
     try {
       const producto = await this.productoService.create(createProductoDto);
       return producto;
@@ -33,7 +37,12 @@ export class ProductosController {
   }
 
   @Patch(':id/stock')
-  async updateStock(@Param('id') id: string, @Body() updateStockDto: { stock: number }) {
+  async updateStock(@Param('id') id: string, @Body() updateStockDto: { stock: number, user: Empleado }) {
+    if (updateStockDto.user.rol !== 'ADMIN_INVENTARIO' && updateStockDto.user.rol !== 'JEFE_INVENTARIO') {
+      return {
+        error: 'No tienes permisos para modificar el stock de productos.'
+      };
+    }
     try {
       const resultado = await this.productoService.updateStock(+id, updateStockDto.stock);
 

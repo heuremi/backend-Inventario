@@ -1,4 +1,6 @@
 import { IsString, IsNotEmpty, IsOptional, IsNumber, Min, IsBoolean } from 'class-validator';
+import { PartialType } from '@nestjs/mapped-types';
+import { Empleado } from 'src/empleados/entities/empleado.entity';
 
 export class CreateProductoDto {
   @IsString()
@@ -29,4 +31,7 @@ export class CreateProductoDto {
   @IsBoolean()
   @IsOptional()
   estado?: boolean = true;
+
+  @IsOptional()
+  user: Empleado | null;
 }
