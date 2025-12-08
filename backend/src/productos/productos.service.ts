@@ -52,10 +52,6 @@ export class ProductosService {
 
   async updateStock(id: number, stock: number) {
     try {
-      if (stock < 0) {
-        throw new Error('El stock a descontar no puede ser negativa.');
-      }
-
       const producto = await this.productoRepository.findOne({ where: { id } });
       
       if (!producto) {

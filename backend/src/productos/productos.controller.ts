@@ -49,14 +49,11 @@ export class ProductosController {
     }
     try {
       const resultado = await this.productoService.updateStock(+id, updateStockDto.stock);
-      console.log(`RRR: ${resultado}`)
       const res2 = await this.ajustesInventarioService.create({
-        cantidad: updateStockDto.stock,
+        cantidad: updateStockDto.stock * -1,
         empleadoId: updateStockDto.user.id,
         productoId: +id
       })
-
-      console.log(`222: ${res2}`)
       return {
         message: `Stock actualizado correctamente. Nuevo stock: ${resultado.stock}`,
         stockAnterior: resultado.stock + updateStockDto.stock,
