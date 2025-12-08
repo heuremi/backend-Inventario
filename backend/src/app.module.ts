@@ -10,6 +10,7 @@ import { ReservasVentaInventarioModule } from './reservas_venta_inventario/reser
 import { AjustesInventarioModule } from './ajustes_inventario/ajustes_inventario.module';
 import { ProductosSinStockModule } from './productos_sin_stock/productos_sin_stock.module';
 import { MovimientosInventarioLogisticaModule } from './movimientos_inventario_logistica/movimientos_inventario_logistica.module';
+import { ProductosPorDespacharModule } from './productos_por_despachar/productos_por_despachar.module';
 
 @Module({
   imports: [ 
@@ -38,6 +39,7 @@ import { MovimientosInventarioLogisticaModule } from './movimientos_inventario_l
     ReservasVentaInventarioModule,
     ProductosSinStockModule,
     MovimientosInventarioLogisticaModule,
+    ProductosPorDespacharModule,
   ],
   controllers: [AppController],
   providers: [AppService],

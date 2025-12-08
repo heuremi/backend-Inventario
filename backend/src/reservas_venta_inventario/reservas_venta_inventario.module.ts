@@ -8,7 +8,6 @@ import { ReservasVentaInventario } from './entities/reservas_venta_inventario.en
 @Module({
   imports: [TypeOrmModule.forFeature([ReservasVentaInventario, Producto, Cliente])],
   controllers: [ReservasVentaInventarioController],
-  providers: [ReservasVentaInventarioService],
-  exports: [ReservasVentaInventarioService],
+  providers: [ReservasVentaInventarioService]
 })
 export class ReservasVentaInventarioModule {}

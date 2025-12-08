@@ -7,11 +7,6 @@ import { UpdateReservasVentaInventarioDto } from './dto/update-reservas_venta_in
 export class ReservasVentaInventarioController {
   constructor(private readonly reservasVentaInventarioService: ReservasVentaInventarioService) {}
 
-  @Post()
-  create(@Body() createReservasVentaInventarioDto: CreateReservasVentaInventarioDto) {
-    return this.reservasVentaInventarioService.create(createReservasVentaInventarioDto);
-  }
-
   @Get()
   findAll() {
     return this.reservasVentaInventarioService.findAll();
@@ -20,15 +15,5 @@ export class ReservasVentaInventarioController {
   @Get(':id')
   findOne(@Param('id') id: string) {
     return this.reservasVentaInventarioService.findOne(+id);
-  }
-
-  @Patch(':id')
-  update(@Param('id') id: string, @Body() updateReservasVentaInventarioDto: UpdateReservasVentaInventarioDto) {
-    return this.reservasVentaInventarioService.update(+id, updateReservasVentaInventarioDto);
-  }
-
-  @Delete(':id')
-  remove(@Param('id') id: string) {
-    return this.reservasVentaInventarioService.remove(+id);
   }
 }
