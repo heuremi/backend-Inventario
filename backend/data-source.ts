@@ -7,7 +7,7 @@ import { AjusteInventario } from './src/ajustes_inventario/entities/ajuste_inven
 import { MovimientoInventario } from './src/movimientos_inventario/entities/movimiento_inventario.entity';
 import { Producto } from './src/productos/entities/producto.entity';
 import { ReservasVentaInventario } from './src/reservas_venta_inventario/entities/reservas_venta_inventario.entity';
-import { ProductosSinStock } from 'src/productos_sin_stock/entities/productos_sin_stock.entity';
+import { ProductosSinStock } from './src/productos_sin_stock/entities/productos_sin_stock.entity';
 
 const useSSL = (process.env.POSTGRES_SSL === 'true') || (process.env.NODE_ENV === 'production');
 
