@@ -10,7 +10,7 @@ export class ProductosController {
 
   @Post()
   async create(@Body() createProductoDto: CreateProductoDto) {
-    if (createProductoDto.user?.rol !== 'ADMIN_INVENTARIO' && createProductoDto.user?.rol !== 'JEFE_INVENTARIO') {
+    if (createProductoDto.user?.rol !== 'ADMIN_INVENTARIO' && createProductoDto.user?.rol !== 'JEFE_INVENTARIO' && createProductoDto.user?.rol !== 'ADMIN' && createProductoDto.user?.rol !== 'SUPER_ADMIN' && createProductoDto.user?.rol !== 'TESTING') {
       return { error: 'No tienes permisos para crear productos.' };
     }
     try {
@@ -38,7 +38,7 @@ export class ProductosController {
 
   @Patch(':id/stock')
   async updateStock(@Param('id') id: string, @Body() updateStockDto: { stock: number, user: Empleado }) {
-    if (updateStockDto.user.rol !== 'ADMIN_INVENTARIO' && updateStockDto.user.rol !== 'JEFE_INVENTARIO') {
+    if (updateStockDto.user.rol !== 'ADMIN_INVENTARIO' && updateStockDto.user.rol !== 'JEFE_INVENTARIO' && updateStockDto.user.rol !== 'ADMIN' && updateStockDto.user.rol !== 'TESTING') {
       return {
         error: 'No tienes permisos para modificar el stock de productos.'
       };

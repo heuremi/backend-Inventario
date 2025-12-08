@@ -15,10 +15,7 @@ export class ProductosSinStock {
 
 	@Column({ type: 'text', nullable: true })
 	descripcion: string;
-
-	@Column({ type: 'double precision', name: 'precio_unitario', nullable: true })
-	precio_unitario: number;
-
+	
 	@Column({ type: 'text', nullable: true })
 	codigo: string;
 

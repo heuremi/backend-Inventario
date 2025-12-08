@@ -50,7 +50,6 @@ export class ProductosService {
       }
 
       const producto = await this.productoRepository.findOne({ where: { id } });
-      console.log(`Producto encontrado:`, producto);
       
       if (!producto) {
         throw new Error(`Producto con ID ${id} no encontrado`);

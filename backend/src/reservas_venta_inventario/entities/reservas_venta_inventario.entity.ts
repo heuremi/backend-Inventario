@@ -1,5 +1,5 @@
-import { Producto } from "../../productos/entities/producto.entity";
-import { Cliente } from "../../clientes/entities/cliente.entity";
+import { Producto } from "src/productos/entities/producto.entity";
+import { Cliente } from "src/clientes/entities/cliente.entity";
 import { Entity, PrimaryGeneratedColumn, Column, ManyToOne, JoinColumn, CreateDateColumn } from "typeorm";
 
 @Entity('reservas_venta_inventario', { schema: 'public' })
