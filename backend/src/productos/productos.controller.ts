@@ -41,7 +41,7 @@ export class ProductosController {
   }
 
   @Patch(':id/stock')
-  async updateStock(@Param('id') id: string, @Body() updateStockDto: { stock: number, user: Empleado }) {
+  async updateStock(@Param('id') id: string, @Body() updateStockDto: { stock: number, observaciones: string, user: Empleado }) {
     if (updateStockDto.user.rol !== 'ADMIN_INVENTARIO' && updateStockDto.user.rol !== 'JEFE_INVENTARIO' && updateStockDto.user.rol !== 'ADMIN' && updateStockDto.user.rol !== 'TESTING') {
       return {
         error: 'No tienes permisos para modificar el stock de productos.'
@@ -51,6 +51,7 @@ export class ProductosController {
       const resultado = await this.productoService.updateStock(+id, updateStockDto.stock);
       const res2 = await this.ajustesInventarioService.create({
         cantidad: updateStockDto.stock * -1,
+        observaciones: updateStockDto.observaciones || 'Ajuste de stock manual',
         empleadoId: updateStockDto.user.id,
         productoId: +id
       })
