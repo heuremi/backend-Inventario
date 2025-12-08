@@ -3,21 +3,28 @@ import { CreateProductoDto } from './dto/create-producto.dto';
 import { UpdateProductoDto } from './dto/update-producto.dto';
 import { Repository } from 'typeorm';
 import { Producto } from './entities/producto.entity';
+import { SolicitudProducto } from './entities/solicitud_producto.entity';
 import { InjectRepository } from '@nestjs/typeorm';
 
 @Injectable()
 export class ProductosService {
   constructor(
     @InjectRepository(Producto)
-    private readonly productoRepository: Repository<Producto>
+    private readonly productoRepository: Repository<Producto>,
+    @InjectRepository(SolicitudProducto)
+    private readonly solicitudProductoRepository: Repository<SolicitudProducto>,
   ) {}
   
   async create(createProductoDto: CreateProductoDto) {
     try {
-      const producto = this.productoRepository.create(createProductoDto);
-      return await this.productoRepository.save(producto);
+      const solicitud = this.solicitudProductoRepository.create({
+        nombre: createProductoDto.nombre,
+        descripcion: createProductoDto.descripcion,
+        estado_solicitud: createProductoDto.estado,
+      });
+      return await this.solicitudProductoRepository.save(solicitud);
     } catch (error) {
-      console.error('Error al crear producto:', error);
+      console.error('Error al crear solicitud de producto:', error);
       throw error;
     }
   }

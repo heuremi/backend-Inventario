@@ -1,12 +1,16 @@
-import { Controller, Get, Post, Body, Patch, Param, Delete } from '@nestjs/common';
+import { Controller, Get, Post, Body, Patch, Param, Delete, Inject } from '@nestjs/common';
 import { ProductosService } from './productos.service';
 import { CreateProductoDto } from './dto/create-producto.dto';
 import { UpdateProductoDto } from './dto/update-producto.dto';
 import { Empleado } from '../empleados/entities/empleado.entity';
+import { AjustesInventarioService } from 'src/ajustes_inventario/ajustes_inventario.service';
 
 @Controller('productos')
 export class ProductosController {
-  constructor(private readonly productoService: ProductosService) {}
+  constructor(
+    private readonly productoService: ProductosService,
+    private readonly ajustesInventarioService: AjustesInventarioService,
+  ) {}
 
   @Post()
   async create(@Body() createProductoDto: CreateProductoDto) {
@@ -45,7 +49,14 @@ export class ProductosController {
     }
     try {
       const resultado = await this.productoService.updateStock(+id, updateStockDto.stock);
+      console.log(`RRR: ${resultado}`)
+      const res2 = await this.ajustesInventarioService.create({
+        cantidad: updateStockDto.stock,
+        empleadoId: updateStockDto.user.id,
+        productoId: +id
+      })
 
+      console.log(`222: ${res2}`)
       return {
         message: `Stock actualizado correctamente. Nuevo stock: ${resultado.stock}`,
         stockAnterior: resultado.stock + updateStockDto.stock,

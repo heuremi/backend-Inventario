@@ -3,7 +3,7 @@ import { IsInt, IsNotEmpty, IsNumber, IsOptional, IsString, Min } from 'class-va
 export class CreateAjustesInventarioDto {
 	@IsNumber()
 	@Min(0.0000001)
-	stock: number;
+	cantidad: number;
 
 	@IsOptional()
 	@IsString()

@@ -3,9 +3,9 @@ import { CreateReservasVentaInventarioDto } from './dto/create-reservas_venta_in
 import { UpdateReservasVentaInventarioDto } from './dto/update-reservas_venta_inventario.dto';
 import { ReservasVentaInventario } from './entities/reservas_venta_inventario.entity';
 import { Repository } from 'typeorm/repository/Repository';
-import { Producto } from '../../productos/entities/producto.entity';
+import { Producto } from '../productos/entities/producto.entity';
 import { InjectRepository } from '@nestjs/typeorm/dist/common/typeorm.decorators';
-import { Cliente } from '../../clientes/entities/cliente.entity';
+import { Cliente } from '../clientes/entities/cliente.entity';
 
 @Injectable()
 export class ReservasVentaInventarioService {
