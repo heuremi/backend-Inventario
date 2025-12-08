@@ -1,7 +1,7 @@
 import { Entity, PrimaryGeneratedColumn, Column, OneToMany, CreateDateColumn, UpdateDateColumn } from 'typeorm';
-import { MovimientoInventario } from '../../movimientos_inventario/entities/movimiento_inventario.entity';
 import { ReservasVentaInventario } from '../../reservas_venta_inventario/entities/reservas_venta_inventario.entity';
 import { AjusteInventario } from '../../ajustes_inventario/entities/ajuste_inventario.entity';
+import { MovimientoInventarioLogistica } from 'src/movimientos_inventario_logistica/entities/movimientos_inventario_logistica.entity';
 
 @Entity('producto', { schema: 'public' })
 export class Producto {
@@ -26,8 +26,8 @@ export class Producto {
   @Column({ type: 'boolean', default: true })
   estado: boolean;
 
-  @OneToMany(() => MovimientoInventario, (movimiento) => movimiento.producto)
-  movimientos: MovimientoInventario[];
+  @OneToMany(() => MovimientoInventarioLogistica, (movimiento) => movimiento.producto)
+  movimientos: MovimientoInventarioLogistica[];
 
   @OneToMany(() => ReservasVentaInventario, (reserva) => reserva.producto)
   reservas: ReservasVentaInventario[];

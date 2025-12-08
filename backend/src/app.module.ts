@@ -7,9 +7,9 @@ import { ProductosModule } from './productos/productos.module';
 import { EmpleadosModule } from './empleados/empleados.module';
 import { ClientesModule } from './clientes/clientes.module';
 import { ReservasVentaInventarioModule } from './reservas_venta_inventario/reservas_venta_inventario.module';
-import { MovimientosInventarioModule } from './movimientos_inventario/movimientos_inventario.module';
 import { AjustesInventarioModule } from './ajustes_inventario/ajustes_inventario.module';
 import { ProductosSinStockModule } from './productos_sin_stock/productos_sin_stock.module';
+import { MovimientosInventarioLogisticaModule } from './movimientos_inventario_logistica/movimientos_inventario_logistica.module';
 
 @Module({
   imports: [ 
@@ -34,10 +34,10 @@ import { ProductosSinStockModule } from './productos_sin_stock/productos_sin_sto
     EmpleadosModule,
     ClientesModule,
     ReservasVentaInventarioModule,
-    MovimientosInventarioModule,
     AjustesInventarioModule,
     ReservasVentaInventarioModule,
     ProductosSinStockModule,
+    MovimientosInventarioLogisticaModule,
   ],
   controllers: [AppController],
   providers: [AppService],
