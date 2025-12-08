@@ -25,5 +25,5 @@ export class MovimientoInventarioLogistica {
     empleado: Empleado;
 
     @CreateDateColumn()
-    fechaMovimiento: Date;
+    fecha_movimiento: Date;
 }
