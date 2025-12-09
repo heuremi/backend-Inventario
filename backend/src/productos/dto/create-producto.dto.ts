@@ -13,7 +13,7 @@ export class CreateProductoDto {
 
   @IsBoolean()
   @IsOptional()
-  estado?: boolean = true;
+  estado?: boolean = false;
 
   @IsOptional()
   user: Empleado | null;
