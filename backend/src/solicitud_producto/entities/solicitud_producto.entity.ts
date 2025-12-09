@@ -11,7 +11,7 @@ export class SolicitudProducto {
   @Column({ type: 'text', nullable: true })
   descripcion: string;
 
-  @Column({ type: 'boolean', default: true, nullable: true })
+  @Column({ type: 'boolean', default: false, nullable: true })
   estado_solicitud: boolean;
 
   @CreateDateColumn()

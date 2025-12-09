@@ -14,7 +14,7 @@ export class CreateSolicitudProductoDto {
 
   @IsBoolean()
   @IsOptional()
-  estado_solicitud?: boolean = true;
+  estado_solicitud?: boolean = false;
 
   @IsDate()
   @Type(() => Date)
